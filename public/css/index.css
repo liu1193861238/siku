@@ -1,0 +1,20 @@
+body{
+    font-size: 28px;
+    color: #1a191e;
+    background-color: #fff !important;
+}
+html{
+    font-size: 10vw;
+    
+}
+a{
+    text-decoration: none;
+}
+body, html, div, dl, dt, dd, ul, li, ol, h1, h2, h3, h4, h5, h6, form, fieldset, input, textarea, p, th, td, a, img, span, button {
+    margin: 0;
+    padding: 0;
+    font-family: STHeiti,Helvetica Neue;
+}
+li{
+    list-style: none;
+}
