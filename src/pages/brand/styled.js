@@ -4,8 +4,38 @@ export const Headers = styled.div`
     height:1.173333rem;
     background-color:#fff;
     a{
-        font-size:.613333rem;
-        color:#000;
+        width:.53333rem;;
+        height:.53333rem;;
+        position:relative;
+        .left{
+            width:20px;
+            height:20px;
+            position:absolute;
+            left:0;
+            top:0;
+            z-index: 2;
+        }
+        .left-arrow1,.left-arrow2{
+            width:0;
+            height:0;
+            display:block;
+            position:absolute;
+            left:0;
+            top:0;
+            z-index:5;
+            border-top:10px transparent dashed;
+            border-left:10px transparent dashed;
+            border-bottom:10px transparent dashed;
+            border-right:10px white solid;
+            overflow:hidden;
+        }
+        .left-arrow1{
+            border-right:15px #000 solid;
+        }
+        .left-arrow2{
+            left:1px;
+            border-right:15px white solid;
+        }
     }
 `
 export const LogoName = styled.div`
@@ -18,19 +48,21 @@ export const LogoName = styled.div`
         line-height:.7rem;
         text-align:center;
     }
-    border-bottom:1px solid #000;
 `
 export const Sections = styled.div`
+    display:block;
     display:flex;
     flex-wrap:wrap;
     width:100%;
-    justify-content:center;
+    justify-content:flex-start;
     align-items:center;
-    >div{
+    padding:0 .3rem;
+    >a{
         width:46%;
         margin-bottom: 0.33333rem;
         div:nth-of-type(1){
             height:5.533333rem;
+            width:100%; 
             img{
                 width:100%;
                 height:100%;
@@ -60,7 +92,7 @@ export const Sections = styled.div`
             }
         }
     }
-    >div:nth-of-type(odd){
+    >a:nth-of-type(odd){
         margin-right:.2rem;
     }
 `

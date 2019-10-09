@@ -1,18 +1,22 @@
 import React from "react"
 import { Popover, NavBar } from 'antd-mobile';
-import { Headers, LogoName, Sections,ShopName } from "./styled"
-import {Link} from "react-router-dom"
+import { Headers, LogoName, Sections } from "./styled"
+import { Link } from "react-router-dom"
+import connect from "./connect"
 const Item = Popover.Item;
+@connect
 class Brand extends React.Component {
     render() {
+        let { productList } = this.props;
+        // console.log(productList)
         return (
             <div>
-                <Headers>           
+                <Headers>
                     <NavBar
                         mode="light"
                         leftContent={
                             <Popover>
-                            <Link to={"/homePage"}>&lt;</Link>
+                                <Link to={"/homePage"}><b className="left"><i className="left-arrow1"></i><i className="left-arrow2"></i></b></Link>
                             </Popover>
                         }
                         rightContent={
@@ -44,74 +48,37 @@ class Brand extends React.Component {
                             </Popover>
                         }
                     >
-                       
-                        <span style={{ fontSize: '.453333rem', fontWeight: 400,}}>品牌优选</span>
+
+                        <span style={{ fontSize: '.453333rem', fontWeight: 400, }}>品牌优选</span>
                     </NavBar>
-                    
+
                 </Headers>
                 <LogoName>
                     <h3>品牌优选</h3>
                 </LogoName>
                 <Sections>
-                    <div>
-                        <div>
-                            <img src="//pic12.secooimg.com/comment/18/3/705c0a8fce1d4e7587441a2f6803d294.jpg_!!0x0.webp" alt="" />
-                        </div>
-                        <div>
-                            <p>Louis Vuitton</p>
-                            <p>查看更多</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="//pic12.secooimg.com/comment/18/3/705c0a8fce1d4e7587441a2f6803d294.jpg_!!0x0.webp" alt="" />
-                        </div>
-                        <div>
-                            <p>Louis Vuitton</p>
-                            <p>查看更多</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="//pic12.secooimg.com/comment/18/3/705c0a8fce1d4e7587441a2f6803d294.jpg_!!0x0.webp" alt="" />
-                        </div>
-                        <div>
-                            <p>Louis Vuitton</p>
-                            <p>查看更多</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="//pic12.secooimg.com/comment/18/3/705c0a8fce1d4e7587441a2f6803d294.jpg_!!0x0.webp" alt="" />
-                        </div>
-                        <div>
-                            <p>Louis Vuitton</p>
-                            <p>查看更多</p>
-                        </div>
-                    </div>
+                    {
+                        productList.map((item, index) => (
+                            <Link key={index} to={"/detail?img_url="+(item.img_url?item.img_url:"")+"&brandCname="+item.brandCname+"&name="+item.name+"&refPrice="+item.refPrice+"&tipPrice="+item.tipPrice+"&tags="+item.tags}>
+                                <div>
+                                    <img src={item.img_url?item.img_url:""} alt="" />
+                                </div>
+                                <div>
+                                    <p>{item.showBrand}</p>
+                                    <p>查看更多</p>
+                                </div>
+                            </Link>
+                        ))
+                    }
+
+
                 </Sections>
-                <ShopName>
-                    <div>
-                        <div>
-                            <img src="//pic12.secooimg.com/comment/18/4/62f71a9382d04460b3d585f30d752bc4.jpg_!!0x0.webp" alt=""/>
-                        </div>
-                        <p>ANTEPRIMA</p>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="//pic12.secooimg.com/comment/18/4/62f71a9382d04460b3d585f30d752bc4.jpg_!!0x0.webp" alt=""/>
-                        </div>
-                        <p>ANTEPRIMA</p>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="//pic12.secooimg.com/comment/18/4/62f71a9382d04460b3d585f30d752bc4.jpg_!!0x0.webp" alt=""/>
-                        </div>
-                        <p>ANTEPRIMA</p>
-                    </div>
-                </ShopName>
+
             </div>
         )
+    }
+    componentDidMount() {
+        this.props.handleAsyncWeek();
     }
     state = {
         selected: '',
@@ -136,7 +103,6 @@ class Brand extends React.Component {
         });
     }
     backHandler() {
-        console.log(this.props)
         this.props.history.goBack();
     }
 }

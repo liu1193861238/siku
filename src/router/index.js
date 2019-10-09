@@ -4,7 +4,10 @@ import {
     Sort,
     ShoppingList,
     Mine,
-    Login
+    Register,
+    Login,
+    ModifyPic,
+    Detail
 } from "@pages"
 
 export const layoutRoutes=[
@@ -80,6 +83,39 @@ export const noLayoutRoutes=[
         exact:true,
         meta:{
             requireAuth:false,
+        }
+    },
+    {
+        key: "/register",
+        path: "/register",
+        name: "注册",
+        icon: "",
+        component: Register,
+        exact: true,
+        meta: {
+            requireAuth: false
+        }
+    },
+    {
+        key:"/modifyPic",
+        path:"/modifyPic",
+        name:"修改头像",
+        icon:"",
+        component:ModifyPic,
+        exact: true,
+        meta: {
+            requireAuth: false
+        }
+    },
+    {
+        key:"/detail",
+        path:"/detail",
+        name:"修改头像",
+        icon:"",
+        component:Detail,
+        exact: true,
+        meta: {
+            requireAuth: false
         }
     }
 ]

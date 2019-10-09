@@ -1,6 +1,7 @@
 import React, { Fragment } from "react"
 import { Switch, Route, Redirect } from "react-router-dom"
 import Layout from "../layout"
+import Cookies from "js-cookie"
 export default (routes) => {
     const eachRoutes = (route) => {
         return <Route key={route.key} path={route.path} render={(props) => (
@@ -13,7 +14,7 @@ export default (routes) => {
                             if (child.children) {
                                 return eachRoutes(child)
                             }
-                            if (!route.meta.requireAuth || sessionStorage.getItem("token") || route.path === "./login") {
+                            if (!route.meta.requireAuth || Cookies.get("token") || route.path === "./login") {
                                 return <Layout {...child}>
                                     <Route path={child.path} key={child.key} component={child.component} {...props} />
                                 </Layout>
@@ -32,7 +33,7 @@ export default (routes) => {
         } else {
             return <Route
                 path={route.path} key={route.key} render={(props) => {
-                    if (!route.meta.requireAuth || sessionStorage.getItem("token") || route.path === "/login") {
+                    if (!route.meta.requireAuth || Cookies.get("token") || route.path === "/login") {
                         return <Layout {...route}>
                         <route.component key={route.key} {...props} />
                         </Layout>

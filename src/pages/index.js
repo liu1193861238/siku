@@ -25,11 +25,26 @@ const Login=Loadable({
     loader:()=>import("./login"),
     loading:Loadding
 })
+const Register=Loadable({
+    loader:()=>import("./register"),
+    loading:Loadding
+})
+const ModifyPic=Loadable({
+    loader:()=>import("./mine/children/modifyPic"),
+    loading:Loadding
+})
+const Detail=Loadable({
+    loader:()=>import("./detail"),
+    loading:Loadding
+})
 export {
     HomePage,
     Brand,
     Sort,
     ShoppingList,
     Mine,
-    Login
+    Login,
+    Register,
+    ModifyPic,
+    Detail
 }
